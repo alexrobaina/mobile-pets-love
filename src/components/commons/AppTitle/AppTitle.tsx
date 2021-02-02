@@ -6,23 +6,26 @@ interface Props {
   style: object;
 }
 
-const AppText: FC<Props> = ({ children, style }) => {
-  return <Text style={styles.text}>{children}</Text>;
+const AppTitle: FC<Props> = ({ children, style }) => {
+  return <Text style={styles.title}>{children}</Text>;
 };
 
 const styles = StyleSheet.create({
-  text: {
-    color: 'tomato',
-    fontFamily: 'lato-regular',
+  title: {
+    textAlign: 'center',
+    color: 'red',
+    fontFamily: 'lato-blod',
     ...Platform.select({
       ios: {
+        marginTop: 25,
         fontSize: 40,
       },
       android: {
-        fontSize: 18,
+        marginTop: 70,
+        fontSize: 38,
       },
     }),
   },
 });
 
-export default AppText;
+export default AppTitle;

@@ -1,12 +1,11 @@
 {
   "exclude": ["node_modules"],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "baseUrl": "./src",
+  "include": ["**/*.ts", "**/*.tsx"],
   "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "components/*": ["./components/*"]
+    },
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
     "lib": ["dom", "esnext"],

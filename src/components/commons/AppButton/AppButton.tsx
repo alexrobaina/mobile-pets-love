@@ -6,7 +6,7 @@ interface Props {
   style: object;
 }
 
-const AppText: FC<Props> = ({ children, style }) => {
+const AppButton: FC<Props> = ({ children, style }) => {
   return <Text style={styles.text}>{children}</Text>;
 };
 
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppText;
+export default AppButton;
