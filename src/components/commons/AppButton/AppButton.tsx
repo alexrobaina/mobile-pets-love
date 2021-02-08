@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
-import { Text, StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform, Button } from 'react-native';
+import colors from 'styles/colors';
 
 interface Props {
-  children: string;
-  style: object;
+  title: string;
+  handlePress: () => void;
 }
 
-const AppButton: FC<Props> = ({ children, style }) => {
-  return <Text style={styles.text}>{children}</Text>;
+const AppButton: FC<Props> = ({ title, handlePress }) => {
+  return <Button title={title} onPress={handlePress} />;
 };
 
 const styles = StyleSheet.create({

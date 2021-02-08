@@ -1,3 +1,3 @@
-import AppButton from './AppText';
+import AppButton from './AppButton';
 
 export default AppButton;

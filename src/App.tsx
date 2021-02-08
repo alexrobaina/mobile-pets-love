@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { registerRootComponent } from 'expo';
+import PetCreation from 'screens/PetCreation';
 import Login from 'screens/Login';
 import Register from 'screens/Register';
 import 'utils/i18n';
@@ -14,6 +15,7 @@ const StackNavigator = () => (
   <Stack.Navigator initialRouteName="Login">
     <Stack.Screen name="Login" component={Login} />
     <Stack.Screen name="Register" component={Register} />
+    <Stack.Screen name="PetCreation" component={PetCreation} />
   </Stack.Navigator>
 );
 

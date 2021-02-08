@@ -1,20 +1,22 @@
 import React, { useCallback } from 'react';
 import { StyleSheet, Image, Button, I18nManager } from 'react-native';
 import AppTitle from 'components/commons/AppTitle';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import NOTE_BOOK_SHELTER from '../../assets/images/noteBookShelter.png';
+import { useNavigation } from '@react-navigation/native';
 import Layout from 'components/commons/Layout';
-import { AsyncStorage } from 'react-native';
 import RNRestart from 'react-native-restart';
 import { useTranslation } from 'react-i18next';
+import NOTE_BOOK_SHELTER from '../../assets/images/noteBookShelter.png';
 
 const Login = () => {
   const { t, i18n } = useTranslation();
-  const route = useRoute();
   const navigation = useNavigation();
 
   const goToRegister = useCallback(() => {
     navigation.navigate('Register');
+  }, []);
+
+  const goToPetCreation = useCallback(() => {
+    navigation.navigate('PetCreation');
   }, []);
 
   const onChangeLang = useCallback((lang) => {
@@ -28,11 +30,12 @@ const Login = () => {
 
   return (
     <Layout>
-      <AppTitle>{t('login')}</AppTitle>
-      <Button style={styles.button} onPress={() => onChangeLang('en')} title="en" />
+      <AppTitle text={t('login')} />
+      <Button onPress={() => onChangeLang('en')} title="en" />
       <Button onPress={() => onChangeLang('es')} title="es" />
       <Image style={styles.image} source={NOTE_BOOK_SHELTER} />
-      <Button style={styles.button} title="Test navegation" onPress={goToRegister} />
+      <Button title="Test navegation" onPress={goToRegister} />
+      <Button title="Pet creation" onPress={goToPetCreation} />
     </Layout>
   );
 };

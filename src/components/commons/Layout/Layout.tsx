@@ -1,12 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 interface Props {
-  children: string;
-  style?: object;
+  children: ReactNode;
 }
 
-const Layout: FC<Props> = ({ children, style }) => {
+const Layout: FC<Props> = ({ children }) => {
   return <View style={styles.containerLayout}>{children}</View>;
 };
 

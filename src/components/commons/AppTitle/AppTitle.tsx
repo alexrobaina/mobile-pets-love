@@ -2,12 +2,11 @@ import React, { FC } from 'react';
 import { Text, StyleSheet, Platform } from 'react-native';
 
 interface Props {
-  children: string;
-  style: object;
+  text: string;
 }
 
-const AppTitle: FC<Props> = ({ children, style }) => {
-  return <Text style={styles.title}>{children}</Text>;
+const AppTitle: FC<Props> = ({ text }) => {
+  return <Text style={styles.title}>{text}</Text>;
 };
 
 const styles = StyleSheet.create({
@@ -22,7 +21,7 @@ const styles = StyleSheet.create({
       },
       android: {
         marginTop: 70,
-        fontSize: 38,
+        AfontSize: 38,
       },
     }),
   },
