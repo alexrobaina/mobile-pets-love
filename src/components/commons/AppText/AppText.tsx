@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import { Text, StyleSheet, Platform } from 'react-native';
 
 interface Props {
-  children: string;
+  text: string;
 }
 
-const AppText: FC<Props> = ({ children }) => {
-  return <Text style={styles.text}>{children}</Text>;
+const AppText: FC<Props> = ({ text }) => {
+  return <Text style={styles.text}>{text}</Text>;
 };
 
 const styles = StyleSheet.create({

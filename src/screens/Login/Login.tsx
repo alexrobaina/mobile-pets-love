@@ -6,6 +6,7 @@ import Layout from 'components/commons/Layout';
 import RNRestart from 'react-native-restart';
 import { useTranslation } from 'react-i18next';
 import NOTE_BOOK_SHELTER from '../../assets/images/noteBookShelter.png';
+import AppButton from 'components/commons/AppButton';
 
 const Login = () => {
   const { t, i18n } = useTranslation();
@@ -34,7 +35,7 @@ const Login = () => {
       <Button onPress={() => onChangeLang('en')} title="en" />
       <Button onPress={() => onChangeLang('es')} title="es" />
       <Image style={styles.image} source={NOTE_BOOK_SHELTER} />
-      <Button title="Test navegation" onPress={goToRegister} />
+      <AppButton title="Test navegation" handlePress={goToRegister} />
       <Button title="Pet creation" onPress={goToPetCreation} />
     </Layout>
   );

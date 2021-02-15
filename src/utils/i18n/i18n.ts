@@ -1,20 +1,14 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { I18nManager } from 'react-native';
-
+import en from './translations/en';
+import es from './translations/es';
 // the translations
+
 // (tip move them in a JSON file and import them)
 const resources = {
-  en: {
-    translation: {
-      login: 'مرحبا بالعالم',
-    },
-  },
-  es: {
-    translation: {
-      login: 'sagas',
-    },
-  },
+  en: { translation: en },
+  es: { translation: es },
 };
 
 i18n

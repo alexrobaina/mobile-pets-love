@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { StyleSheet, Platform, Button } from 'react-native';
+import { StyleSheet, Platform, View, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import colors from 'styles/colors';
 
 interface Props {
@@ -8,16 +9,31 @@ interface Props {
 }
 
 const AppButton: FC<Props> = ({ title, handlePress }) => {
-  return <Button title={title} onPress={handlePress} />;
+  return (
+    <TouchableOpacity style={styles.button} onPress={handlePress}>
+      <Text style={styles.text}>{title}</Text>
+    </TouchableOpacity>
+  );
 };
 
 const styles = StyleSheet.create({
+  button: {
+    backgroundColor: colors.primary.backgroundColor,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+    width: '100%',
+  },
   text: {
-    color: 'tomato',
+    color: colors.primary.text,
+    fontSize: 18,
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
     fontFamily: 'lato-regular',
     ...Platform.select({
       ios: {
-        fontSize: 40,
+        fontSize: 18,
       },
       android: {
         fontSize: 18,

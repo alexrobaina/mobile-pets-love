@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from 'styles/colors';
 import * as ImagePicker from 'expo-image-picker';
@@ -18,10 +18,6 @@ const ImageInput: FC<Props> = ({ imageUri, onChangeImage }) => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync();
     if (!granted) alert('You need permission to enable for view image');
   };
-
-  const changeImage = useCallback(() => {
-    alert('image');
-  }, []);
 
   const handlePress = () => {
     if (!imageUri) selectImage();

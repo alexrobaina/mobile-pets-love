@@ -1,11 +1,11 @@
 import React, { FC, useRef } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import ImageInput from 'components/commons/ImageInput';
-
+// lallopis@teco.com.ar
 interface Props {
   imageUris?: Array<String>;
-  onRemoveImage: (uri: string) => void;
-  onAddImage: (uri: string) => void;
+  onRemoveImage: (uri: any) => void;
+  onAddImage: (uri: any) => void;
 }
 
 const ImageInputList: FC<Props> = ({ imageUris = [], onRemoveImage, onAddImage }) => {
