@@ -48,6 +48,9 @@ const MessagesScreen = () => {
   return (
     <Screen>
       <FlatList
+        data={messages}
+        keyExtractor={(message) => message.id.toString()}
+        ItemSeparatorComponent={() => <ListItemSeparator />}
         renderItem={({ item }) => (
           <ListItem
             id={item.id}
@@ -60,9 +63,6 @@ const MessagesScreen = () => {
             )}
           />
         )}
-        keyExtractor={(message) => message.id.toString()}
-        data={messages}
-        ItemSeparatorComponent={() => <ListItemSeparator />}
       />
     </Screen>
   );
