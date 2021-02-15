@@ -1,5 +1,12 @@
 {
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "components/*": ["./components/*"],
+      "styles/*": ["./styles/*"]
+    },
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
     "lib": ["dom", "esnext"],

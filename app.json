@@ -1,14 +1,19 @@
 {
   "expo": {
+    "entryPoint": "./index.ts",
     "name": "mobilePetsLove",
     "slug": "mobilePetsLove",
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/images/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./src/assets/images/logo.png",
+      "justifyContent": "center",
+      "alignItems": "center",
+      "backgroundColor": '#DFE1F8',
+      "width": 300,
+      "height": 200
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -19,14 +24,15 @@
     "ios": {
       "supportsTablet": true
     },
+    "packagerOpts": { "sourceExts": [ "json", "ts", "tsx", "tsx"], "config": "metro.config.js" },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/images/assets/favicon.png"
     }
   }
 }
