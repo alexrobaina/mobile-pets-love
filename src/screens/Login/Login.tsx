@@ -1,47 +1,79 @@
-import React, { useCallback } from 'react';
-import { StyleSheet, Image, Button, I18nManager } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { StyleSheet } from 'react-native';
 import AppTitle from 'components/commons/AppTitle';
-import { useNavigation } from '@react-navigation/native';
 import Layout from 'components/commons/Layout';
-import RNRestart from 'react-native-restart';
+import { observer } from 'mobx-react-lite';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-import NOTE_BOOK_SHELTER from '../../assets/images/noteBookShelter.png';
 import AppButton from 'components/commons/AppButton';
+import InputStore from 'stores/InputStore';
+import WrapperInputs from 'components/commons/WrapperInputs';
+import Input from 'components/commons/Input';
+import colors from 'styles/colors';
+
+const EMAIL = 'email';
+const REQUIRED = 'required';
 
 const Login = () => {
-  const { t, i18n } = useTranslation();
-  const navigation = useNavigation();
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const { t } = useTranslation();
+  let email = new InputStore(EMAIL);
+  let password = new InputStore(REQUIRED);
 
-  const goToRegister = useCallback(() => {
-    navigation.navigate('Register');
+  const handleChangeEmail = useCallback((text) => {
+    email.setValue(text);
   }, []);
 
-  const goToPetCreation = useCallback(() => {
-    navigation.navigate('PetCreation');
+  const handleChangePassword = useCallback((text) => {
+    password.setValue(text);
   }, []);
 
-  const onChangeLang = useCallback((lang) => {
-    i18n.changeLanguage(lang === 'en' ? 'en' : 'es').then(() => {
-      if (I18nManager.isRTL) {
-        I18nManager.forceRTL(i18n.language === 'es');
-        RNRestart.Restart();
-      }
-    });
+  const handleViewPassword = useCallback(() => {
+    setSecureTextEntry(!secureTextEntry);
+  }, []);
+
+  const handleLogin = useCallback(() => {
+    email.validate();
+    password.validate();
   }, []);
 
   return (
     <Layout>
       <AppTitle text={t('login')} />
-      <Button onPress={() => onChangeLang('en')} title="en" />
-      <Button onPress={() => onChangeLang('es')} title="es" />
-      <Image style={styles.image} source={NOTE_BOOK_SHELTER} />
-      <AppButton title="Test navegation" handlePress={goToRegister} />
-      <Button title="Pet creation" onPress={goToPetCreation} />
+      <WrapperInputs
+        as={Input}
+        label="Email"
+        inputStore={email}
+        placeholder="Email"
+        handleChange={handleChangeEmail}
+      />
+      <TouchableOpacity style={styles.password} onPress={handleViewPassword}>
+        <Ionicons name="eye-outline" size={24} color={colors.primary.light} />
+      </TouchableOpacity>
+      <WrapperInputs
+        as={Input}
+        label="Password"
+        inputStore={password}
+        placeholder="Password"
+        secureTextEntry={secureTextEntry}
+        handleChange={handleChangePassword}
+      />
+      <AppButton title="Login" handlePress={handleLogin} />
     </Layout>
   );
 };
 
 const styles = StyleSheet.create({
+  input: {
+    height: 40,
+  },
+  password: {
+    zIndex: 50,
+    position: 'absolute',
+    marginTop: 160,
+    right: 20,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -58,4 +90,20 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default observer(Login);
+
+// This functions is for change language.
+
+{
+  /* <Button onPress={() => onChangeLang('en')} title="en" />
+<Button onPress={() => onChangeLang('es')} title="es" />  */
+}
+
+// const onChangeLang = useCallback((lang) => {
+//   i18n.changeLanguage(lang === 'en' ? 'en' : 'es').then(() => {
+//     if (I18nManager.isRTL) {
+//       I18nManager.forceRTL(i18n.language === 'es');
+//       RNRestart.Restart();
+//     }
+//   });
+// }, []);
