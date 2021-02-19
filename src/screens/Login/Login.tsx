@@ -3,20 +3,14 @@ import { StyleSheet } from 'react-native';
 import AppTitle from 'components/commons/AppTitle';
 import Layout from 'components/commons/Layout';
 import { observer } from 'mobx-react-lite';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import AppButton from 'components/commons/AppButton';
 import InputStore from 'stores/InputStore';
 import WrapperInputs from 'components/commons/WrapperInputs';
+import { EMAIL, REQUIRED } from 'utils/validations/typeValidations';
 import Input from 'components/commons/Input';
-import colors from 'styles/colors';
-
-const EMAIL = 'email';
-const REQUIRED = 'required';
 
 const Login = () => {
-  const [secureTextEntry, setSecureTextEntry] = useState(true);
   const { t } = useTranslation();
   let email = new InputStore(EMAIL);
   let password = new InputStore(REQUIRED);
@@ -29,9 +23,8 @@ const Login = () => {
     password.setValue(text);
   }, []);
 
-  const handleViewPassword = useCallback(() => {
-    setSecureTextEntry(!secureTextEntry);
-  }, []);
+  // ESTO NO ANDA....
+  const handleViewPassword = useCallback(() => {}, []);
 
   const handleLogin = useCallback(() => {
     email.validate();
@@ -48,18 +41,16 @@ const Login = () => {
         placeholder="Email"
         handleChange={handleChangeEmail}
       />
-      <TouchableOpacity style={styles.password} onPress={handleViewPassword}>
-        <Ionicons name="eye-outline" size={24} color={colors.primary.light} />
-      </TouchableOpacity>
       <WrapperInputs
         as={Input}
+        isSecureText
         label="Password"
         inputStore={password}
         placeholder="Password"
-        secureTextEntry={secureTextEntry}
+        handleViewSecureText={handleViewPassword}
         handleChange={handleChangePassword}
       />
-      <AppButton title="Login" handlePress={handleLogin} />
+      <AppButton title={t('login')} handlePress={handleLogin} />
     </Layout>
   );
 };
@@ -67,12 +58,6 @@ const Login = () => {
 const styles = StyleSheet.create({
   input: {
     height: 40,
-  },
-  password: {
-    zIndex: 50,
-    position: 'absolute',
-    marginTop: 160,
-    right: 20,
   },
   container: {
     flex: 1,

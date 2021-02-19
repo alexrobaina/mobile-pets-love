@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { observer } from 'mobx-react-lite';
 import { StyleSheet, View } from 'react-native';
 import InputStore from 'stores/InputStore';
-
 interface Props {
   as: any;
   label?: string;
@@ -10,21 +9,22 @@ interface Props {
   hideError?: boolean;
   inputRef?: Function;
   placeholder: string;
+  isSecureText?: boolean;
   inputStore: InputStore;
-  secureTextEntry?: boolean;
   handleChange?: (value: string | number) => void;
+  handleViewSecureText?: () => void;
 }
 
 const WrapperInputs: FC<Props> = ({
   label = '',
   inputStore,
+  isSecureText,
   as: Component,
   inputRef = null,
   required = false,
   placeholder = '',
   hideError = false,
   handleChange = null,
-  secureTextEntry = false,
   ...props
 }) => {
   return (
@@ -36,7 +36,7 @@ const WrapperInputs: FC<Props> = ({
         required={required}
         placeholder={placeholder}
         handleChange={handleChange}
-        secureTextEntry={secureTextEntry}
+        isSecureText={isSecureText}
         value={inputStore && inputStore.value}
         errorMessage={
           inputStore && !hideError && inputStore.errorMessage
@@ -50,9 +50,10 @@ const WrapperInputs: FC<Props> = ({
 
 const styles = StyleSheet.create({
   wrapper: {
+    position: 'relative',
     flexDirection: 'column',
     width: '100%',
-    marginBottom: 5,
+    marginBottom: 10,
   },
 });
 

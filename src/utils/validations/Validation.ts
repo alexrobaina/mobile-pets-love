@@ -1,9 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import validationSchemas from 'utils/validations/validationSchemas';
-
-const EMAIL = 'email';
-const REQUIRED = 'required';
-
+import { EMAIL, REQUIRED } from 'utils/validations/typeValidations';
 interface Props {
   validationSchema: Function;
   type: string;

@@ -13,6 +13,7 @@ const AppTitle: FC<Props> = ({ text }) => {
 const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
+    marginBottom: 30,
     color: colors.primary.title,
     fontFamily: 'lato-blod',
     ...Platform.select({

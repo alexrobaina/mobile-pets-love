@@ -3,12 +3,12 @@ import Validation from 'utils/validations/Validation';
 
 interface IInputStore {
   error?: boolean;
+  validation: object;
+  isValidate: Function;
   errorMessage?: string;
   value?: number | string;
   validationType?: string;
-  isValidate: Function;
   validationSchema: Function;
-  validation: object;
 }
 
 class InputStore implements IInputStore {

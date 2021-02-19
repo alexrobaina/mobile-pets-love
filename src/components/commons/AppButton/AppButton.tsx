@@ -18,6 +18,7 @@ const AppButton: FC<Props> = ({ title, handlePress }) => {
 
 const styles = StyleSheet.create({
   button: {
+    marginTop: 20,
     backgroundColor: colors.primary.backgroundColor,
     borderRadius: 50,
     justifyContent: 'center',

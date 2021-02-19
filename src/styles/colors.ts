@@ -8,9 +8,12 @@ const colors = {
     light: '#D0D0D0',
   },
   medium: '#EDEDED',
+  black: '#181818',
   white: '#FFF',
   backgroundSplash: '#DEE0F8',
+  transparent: '#0000',
   danger: '#c62828',
+  error: '#c62828',
 };
 
 export default colors;

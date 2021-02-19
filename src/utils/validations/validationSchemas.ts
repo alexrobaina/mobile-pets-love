@@ -4,8 +4,8 @@ import * as yup from 'yup';
 const emailValidation = yup.object().shape({
   value: yup
     .string()
-    .email(() => i18next.t('field_required'))
-    .required(() => i18next.t('field_email')),
+    .email(() => i18next.t('field_email'))
+    .required(() => i18next.t('field_required')),
 });
 
 const requiredValidation = yup.object().shape({
