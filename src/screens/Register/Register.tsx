@@ -16,7 +16,7 @@ const Register = () => {
 
   return (
     <Layout>
-      <AppTitle>{t('register')}</AppTitle>
+      {/* <AppTitle>{t('register')}</AppTitle> */}
       <Button title={t('goToLogin')} onPress={goToLogin} />
     </Layout>
   );

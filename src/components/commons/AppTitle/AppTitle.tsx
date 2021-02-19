@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Text, StyleSheet, Platform } from 'react-native';
+import colors from 'styles/colors';
 
 interface Props {
   text: string;
@@ -12,7 +13,8 @@ const AppTitle: FC<Props> = ({ text }) => {
 const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
-    color: 'red',
+    marginBottom: 30,
+    color: colors.primary.title,
     fontFamily: 'lato-blod',
     ...Platform.select({
       ios: {
