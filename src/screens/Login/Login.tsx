@@ -1,44 +1,55 @@
-import React, { useCallback, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import React, { useCallback } from 'react';
+import { StyleSheet, Image, Test } from 'react-native';
 import AppTitle from 'components/commons/AppTitle';
 import Layout from 'components/commons/Layout';
-import { observer } from 'mobx-react-lite';
+import { observer, useLocalObservable } from 'mobx-react-lite';
 import { useTranslation } from 'react-i18next';
 import AppButton from 'components/commons/AppButton';
 import InputStore from 'stores/InputStore';
+import AuthStore from 'stores/AuthStore';
 import WrapperInputs from 'components/commons/WrapperInputs';
-import { EMAIL, REQUIRED } from 'utils/validations/typeValidations';
+import { EMAIL, REQUIRED } from 'utils/validations/validationType';
 import Input from 'components/commons/Input';
 
 const Login = () => {
+  const authStore = useLocalObservable(() => new AuthStore());
   const { t } = useTranslation();
-  let email = new InputStore(EMAIL);
-  let password = new InputStore(REQUIRED);
 
   const handleChangeEmail = useCallback((text) => {
-    email.setValue(text);
+    authStore.email.setValue(text);
   }, []);
 
   const handleChangePassword = useCallback((text) => {
-    password.setValue(text);
+    authStore.password.setValue(text);
   }, []);
-
-  // ESTO NO ANDA....
-  const handleViewPassword = useCallback(() => {}, []);
 
   const handleLogin = useCallback(() => {
-    email.validate();
-    password.validate();
+    authStore.login();
   }, []);
+
+  const handleViewPassword = useCallback(() => {
+    alert('login');
+  }, []);
+
+  const { email, password, isLoading } = authStore;
+
+  if (isLoading) {
+    return <AppTitle text={t('loading')} />;
+  }
 
   return (
     <Layout>
       <AppTitle text={t('login')} />
+      <Image
+        source={require('../../assets/images/noteBookShelter.png')}
+        style={styles.image}
+      />
       <WrapperInputs
         as={Input}
         label="Email"
         inputStore={email}
         placeholder="Email"
+        value={email.value}
         handleChange={handleChangeEmail}
       />
       <WrapperInputs

@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import InputStore from 'stores/InputStore';
 interface Props {
   as: any;
+  value?: string;
   label?: string;
   required?: boolean;
   hideError?: boolean;
@@ -19,6 +20,7 @@ const WrapperInputs: FC<Props> = ({
   label = '',
   inputStore,
   isSecureText,
+  value = null,
   as: Component,
   inputRef = null,
   required = false,
@@ -32,6 +34,7 @@ const WrapperInputs: FC<Props> = ({
       <Component
         {...props}
         label={label}
+        value={value}
         inputRef={inputRef}
         required={required}
         placeholder={placeholder}

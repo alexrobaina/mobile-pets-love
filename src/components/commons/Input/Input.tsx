@@ -8,6 +8,7 @@ import { TextInput, TouchableHighlight } from 'react-native-gesture-handler';
 import PasswordEyeButton from './PasswordEyeButton/PasswordEyeButton';
 
 interface Props {
+  value?: string;
   label?: string;
   placeholder: string;
   errorMessage: string;
@@ -16,6 +17,7 @@ interface Props {
 }
 
 const Input: FC<Props> = ({
+  value = '',
   label = '',
   placeholder,
   handleChange,
@@ -44,7 +46,9 @@ const Input: FC<Props> = ({
       <View style={styles.containar}>
         <Text style={styles.label}>{label}</Text>
         <TextInput
+          value={value}
           style={styles.input}
+          autoCapitalize="none"
           placeholder={placeholder}
           onChangeText={handleChange}
           secureTextEntry={internalInputStore.secureTextEntry}
