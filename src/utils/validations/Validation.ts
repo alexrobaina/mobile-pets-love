@@ -1,6 +1,13 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 import validationSchemas from 'utils/validations/validationSchemas';
-import { EMAIL, REQUIRED } from 'utils/validations/typeValidations';
+import {
+  EMAIL,
+  REQUIRED,
+  PASSWORD,
+  PASSWORD_EDIT,
+  CONFIRM_PASSWORD,
+} from 'utils/validations/validationType';
+
 interface Props {
   validationSchema: Function;
   type: string;
@@ -19,12 +26,26 @@ class Validation implements Props {
     this.setValidateSchema();
   }
 
-  async checkValidation(store: any) {
+  async checkValidation(store: any, password: string | number) {
     if (this.validationSchema) {
       try {
-        await this.validationSchema.validate({ value: store.value });
+        if (this.type === CONFIRM_PASSWORD) {
+          await this.validationSchema.validate({
+            confirmPassword: store.value,
+            password: password || '',
+          });
+        } else {
+          await this.validationSchema.validate({ value: store.value });
+        }
+
+        runInAction(() => {
+          return true;
+        });
       } catch (e) {
-        store.setError(e.message);
+        runInAction(() => {
+          store.setError(e.message);
+          return false;
+        });
       }
     }
   }
@@ -38,6 +59,15 @@ class Validation implements Props {
         break;
       case REQUIRED:
         this.validationSchema = validationSchemas.requiredValidation;
+        break;
+      case PASSWORD:
+        this.validationSchema = validationSchemas.passwordValidation;
+        break;
+      case CONFIRM_PASSWORD:
+        this.validationSchema = validationSchemas.confirmPasswordValidation;
+        break;
+      case PASSWORD_EDIT:
+        this.validationSchema = validationSchemas.confirmPasswordEditValidation;
         break;
       default:
         break;
