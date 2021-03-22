@@ -1,39 +1,48 @@
-import React, { useCallback } from 'react';
-import { StyleSheet, Image, Test } from 'react-native';
-import AppTitle from 'components/commons/AppTitle';
-import Layout from 'components/commons/Layout';
-import { observer, useLocalObservable } from 'mobx-react-lite';
-import { useTranslation } from 'react-i18next';
+import React, { useCallback, useReducer } from 'react';
+import { StyleSheet, Image } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import AppButton from 'components/commons/AppButton';
-import InputStore from 'stores/InputStore';
-import AuthStore from 'stores/AuthStore';
+import AppTitle from 'components/commons/AppTitle';
+import {
+  formsReducer,
+  validateInput,
+  onInputChange,
+  INPUT_INITIAL_STATE,
+} from 'utils/inputInitialReducer';
+import { signIn } from '../../store/slices/auth/auth';
+import Layout from 'components/commons/Layout';
+import { useTranslation } from 'react-i18next';
 import WrapperInputs from 'components/commons/WrapperInputs';
-import { EMAIL, REQUIRED } from 'utils/validations/validationType';
 import Input from 'components/commons/Input';
+import { EMAIL, PASSWORD } from 'utils/validations/validationType';
+
+const initialState = {
+  email: INPUT_INITIAL_STATE,
+  password: INPUT_INITIAL_STATE,
+};
 
 const Login = () => {
-  const authStore = useLocalObservable(() => new AuthStore());
+  const [formState, dispatchReducer] = useReducer(formsReducer, initialState);
+  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const handleChangeEmail = useCallback((text) => {
-    authStore.email.setValue(text);
+    onInputChange('email', EMAIL, text, dispatchReducer, true, false);
   }, []);
 
   const handleChangePassword = useCallback((text) => {
-    authStore.password.setValue(text);
+    onInputChange('password', PASSWORD, text, dispatchReducer, true, false);
   }, []);
 
-  const handleLogin = useCallback(() => {
-    authStore.login();
-  }, []);
+  const { email, password, isFormValid } = formState;
 
-  const handleViewPassword = useCallback(() => {
-    alert('login');
-  }, []);
+  const handleLogin = () => {
+    dispatch(signIn({ email, password }));
+  };
 
-  const { email, password, isLoading } = authStore;
+  const { loading } = useSelector((state: any) => state.auth);
 
-  if (isLoading) {
+  if (loading) {
     return <AppTitle text={t('loading')} />;
   }
 
@@ -46,19 +55,23 @@ const Login = () => {
       />
       <WrapperInputs
         as={Input}
+        name="email"
         label="Email"
-        inputStore={email}
-        placeholder="Email"
         value={email.value}
+        error={email.error}
+        hasError={email.hasError}
         handleChange={handleChangeEmail}
+        placeholder="shelterpets@email.com"
       />
       <WrapperInputs
         as={Input}
         isSecureText
+        name="password"
         label="Password"
-        inputStore={password}
         placeholder="Password"
-        handleViewSecureText={handleViewPassword}
+        value={password.value}
+        error={password.error}
+        hasError={password.hasError}
         handleChange={handleChangePassword}
       />
       <AppButton title={t('login')} handlePress={handleLogin} />
@@ -86,7 +99,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default observer(Login);
+export default Login;
 
 // This functions is for change language.
 

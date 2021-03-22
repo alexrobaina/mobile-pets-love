@@ -9,6 +9,7 @@
       "styles/*": ["./styles/*"],
       "stores/*": ["./stores/*"]
     },
+    "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
     "lib": ["dom", "esnext"],

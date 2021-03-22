@@ -1,4 +1,3 @@
-import { makeAutoObservable, runInAction } from 'mobx';
 import validationSchemas from 'utils/validations/validationSchemas';
 import {
   EMAIL,
@@ -17,16 +16,17 @@ class Validation implements Props {
   type;
   validationSchema: any;
 
-  constructor(type: string) {
+  constructor() {
     this.validationSchema = null;
+    this.type = '';
+  }
+
+  setTypeValidation(type: string) {
     this.type = type;
-
-    makeAutoObservable(this);
-
     this.setValidateSchema();
   }
 
-  async checkValidation(store: any, password: string | number) {
+  async checkValidation(store: any, password?: string) {
     if (this.validationSchema) {
       try {
         if (this.type === CONFIRM_PASSWORD) {
@@ -38,21 +38,16 @@ class Validation implements Props {
           await this.validationSchema.validate({ value: store.value });
         }
 
-        runInAction(() => {
-          return true;
-        });
+        return true;
       } catch (e) {
-        runInAction(() => {
-          store.setError(e.message);
-          return false;
-        });
+        store.setError(e.message);
+        return false;
       }
     }
   }
 
   setValidateSchema() {
     this.validationSchema = null;
-
     switch (this.type) {
       case EMAIL:
         this.validationSchema = validationSchemas.emailValidation;

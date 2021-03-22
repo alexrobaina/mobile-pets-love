@@ -1,27 +1,28 @@
 import React, { FC, useCallback, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Platform } from 'react-native';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import InternalInputStore from './InternalInputStore';
 import colors from 'styles/colors';
-import { Ionicons } from '@expo/vector-icons';
-import { TextInput, TouchableHighlight } from 'react-native-gesture-handler';
 import PasswordEyeButton from './PasswordEyeButton/PasswordEyeButton';
 
 interface Props {
+  error: string;
   value?: string;
   label?: string;
+  hasError: boolean;
   placeholder: string;
   errorMessage: string;
-  isSecureText: boolean;
+  isSecureText?: boolean;
   handleChange?: (e: string | number) => void;
 }
 
 const Input: FC<Props> = ({
+  error,
+  hasError,
   value = '',
   label = '',
   placeholder,
   handleChange,
-  errorMessage,
   isSecureText = false,
 }) => {
   const internalInputStore = useLocalObservable(() => new InternalInputStore());
@@ -35,6 +36,46 @@ const Input: FC<Props> = ({
       internalInputStore.setSecureTextEntry();
     }
   }, []);
+
+  const styles = StyleSheet.create({
+    containar: {
+      position: 'relative',
+      width: '100%',
+      zIndex: 10,
+    },
+    viewPasswordEye: {
+      position: 'absolute',
+      zIndex: 20,
+      right: 20,
+      top: 31,
+      width: 25,
+      height: 50,
+    },
+    label: {
+      marginBottom: 5,
+      fontFamily: 'lato-regular',
+      letterSpacing: 1,
+      color: colors.primary.text,
+      ...Platform.select({
+        ios: {
+          fontSize: 16,
+        },
+        android: {
+          fontSize: 18,
+        },
+      }),
+    },
+    input: {
+      padding: 12,
+      borderWidth: 1.2,
+      borderRadius: 8,
+      borderColor: hasError ? 'red' : colors.borderInput,
+    },
+    error: {
+      color: colors.error,
+      marginTop: 5,
+    },
+  });
 
   return (
     <>
@@ -53,39 +94,10 @@ const Input: FC<Props> = ({
           onChangeText={handleChange}
           secureTextEntry={internalInputStore.secureTextEntry}
         />
-        <Text style={styles.error}>{errorMessage}</Text>
+        <Text style={styles.error}>{error}</Text>
       </View>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  containar: {
-    position: 'relative',
-    width: '100%',
-    zIndex: 10,
-  },
-  viewPasswordEye: {
-    position: 'absolute',
-    zIndex: 20,
-    right: 20,
-    top: 31,
-    width: 25,
-    height: 50,
-  },
-  label: {
-    marginBottom: 5,
-  },
-  input: {
-    padding: 12,
-    borderWidth: 1,
-    borderRadius: 20,
-    borderColor: colors.primary.border,
-  },
-  error: {
-    color: colors.error,
-    marginTop: 5,
-  },
-});
 
 export default observer(Input);
