@@ -10,12 +10,11 @@ import { login } from '../../api/auth/auth';
 
 export function* signInWorker({ payload }) {
   console.log(payload);
-
   try {
     // Todas las acciones de redux que alteral el estado van put el resto call
     yield put(authStart());
-    const result = yield call(login, payload);
-    yield put(authSuccess(result));
+    // const result = yield call(login, payload);
+    yield put(authSuccess({ result: '' }));
   } catch (error) {
     console.log(error);
 

@@ -34,14 +34,16 @@ const Login = () => {
     onInputChange('password', PASSWORD, text, dispatchReducer, true, false);
   }, []);
 
-  const { email, password, isFormValid } = formState;
+  const { loading } = useSelector((state: any) => state.auth);
 
   const handleLogin = () => {
+    const isValid = validateInput(formState);
+    console.log(isValid);
+
     dispatch(signIn({ email, password }));
   };
 
-  const { loading } = useSelector((state: any) => state.auth);
-
+  const { email, password } = formState;
   if (loading) {
     return <AppTitle text={t('loading')} />;
   }

@@ -26,22 +26,21 @@ class Validation implements Props {
     this.setValidateSchema();
   }
 
-  async checkValidation(store: any, password?: string) {
+  async checkValidation(value: string | number, password?: string) {
     if (this.validationSchema) {
       try {
         if (this.type === CONFIRM_PASSWORD) {
           await this.validationSchema.validate({
-            confirmPassword: store.value,
+            confirmPassword: value,
             password: password || '',
           });
         } else {
-          await this.validationSchema.validate({ value: store.value });
+          await this.validationSchema.validate({ value: value });
         }
 
         return true;
       } catch (e) {
-        store.setError(e.message);
-        return false;
+        return e.message;
       }
     }
   }
