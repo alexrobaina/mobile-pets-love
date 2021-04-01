@@ -4,7 +4,7 @@ import WrapperInputs from 'components/commons/WrapperInputs';
 import Input from 'components/commons/Input';
 import { EMAIL, PASSWORD } from 'utils/validations/validationType';
 
-const FormInputs = ({ formState, handleChange }) => {
+const LoginFormInputs = ({ formState, handleChange }) => {
   const { t } = useTranslation();
 
   const { email, password } = formState;
@@ -13,6 +13,7 @@ const FormInputs = ({ formState, handleChange }) => {
     <>
       <WrapperInputs
         as={Input}
+        isRequired
         name="email"
         label={t('email')}
         value={email.value}
@@ -24,6 +25,7 @@ const FormInputs = ({ formState, handleChange }) => {
       />
       <WrapperInputs
         as={Input}
+        isRequired
         isSecureText
         name="password"
         label={t('password')}
@@ -38,4 +40,4 @@ const FormInputs = ({ formState, handleChange }) => {
   );
 };
 
-export default FormInputs;
+export default LoginFormInputs;

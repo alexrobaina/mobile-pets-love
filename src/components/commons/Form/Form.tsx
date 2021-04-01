@@ -35,7 +35,7 @@ const Form: FC<Props> = ({
   };
 
   const formsReducer = (state, action) => {
-    let { name, value, hasError, error, touched, type } = action.data;
+    let { name, value, hasError, error, touched, type, isRequired } = action.data;
 
     switch (action.type) {
       case EMAIL:
@@ -44,8 +44,9 @@ const Form: FC<Props> = ({
         error = validation?.errorMessage;
         return {
           ...state,
-          [name]: { ...state[name], value, hasError, error, touched, type },
+          [name]: { ...state[name], value, hasError, error, touched, type, isRequired },
         };
+
       default:
         return state;
     }
@@ -61,6 +62,7 @@ const Form: FC<Props> = ({
     dispatch: any,
     touched: boolean,
     hasError: boolean,
+    isRequired: boolean,
   ) => {
     dispatch({
       type: type,
@@ -71,12 +73,13 @@ const Form: FC<Props> = ({
         hasError,
         error: '',
         type: type,
+        isRequired,
       },
     });
   };
 
-  const handleChange = useCallback((text, name, validationType) => {
-    onInputChange(name, validationType, text, dispatchReducer, true, false);
+  const handleChange = useCallback((text, name, validationType, isRequired) => {
+    onInputChange(name, validationType, text, dispatchReducer, true, false, isRequired);
   }, []);
 
   const submit = () => {

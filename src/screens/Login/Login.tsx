@@ -6,7 +6,7 @@ import { signIn } from '../../store/slices/auth/auth';
 import Layout from 'components/commons/Layout';
 import { useTranslation } from 'react-i18next';
 import Form from 'components/commons/Form';
-import FormInputs from './InputsForm';
+import LoginFormInputs from './LoginFormInputs';
 
 export const INPUT_INITIAL_STATE = {
   type: '',
@@ -14,8 +14,7 @@ export const INPUT_INITIAL_STATE = {
   value: '',
   touched: false,
   hasError: false,
-  isFormValid: true,
-  hasValidation: false,
+  isRequired: false,
 };
 
 const initialState = {
@@ -42,7 +41,7 @@ const Login = () => {
       <Form
         handleSubmit={signIn}
         initialState={initialState}
-        formComponentsInputs={FormInputs}
+        formComponentsInputs={LoginFormInputs}
       />
     </Layout>
   );
