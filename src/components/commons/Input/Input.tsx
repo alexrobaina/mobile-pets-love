@@ -6,6 +6,7 @@ import colors from 'styles/colors';
 import PasswordEyeButton from './PasswordEyeButton/PasswordEyeButton';
 
 interface Props {
+  name: string;
   error: string;
   value?: string;
   label?: string;
@@ -13,22 +14,29 @@ interface Props {
   placeholder: string;
   errorMessage: string;
   isSecureText?: boolean;
-  handleChange?: (e: string | number) => void;
+  validationType?: string;
+  handleChange: (e: string | number, name: string, validationType?: string) => void;
 }
 
 const Input: FC<Props> = ({
+  name,
   error,
   hasError,
   value = '',
   label = '',
   placeholder,
   handleChange,
+  validationType = '',
   isSecureText = false,
 }) => {
   const internalInputStore = useLocalObservable(() => new InternalInputStore());
 
   const handleViewSecureText = useCallback(() => {
     internalInputStore.setSecureTextEntry();
+  }, []);
+
+  const handleChangeText = useCallback((text) => {
+    handleChange(text, name, validationType);
   }, []);
 
   useEffect(() => {
@@ -91,7 +99,7 @@ const Input: FC<Props> = ({
           style={styles.input}
           autoCapitalize="none"
           placeholder={placeholder}
-          onChangeText={handleChange}
+          onChangeText={handleChangeText}
           secureTextEntry={internalInputStore.secureTextEntry}
         />
         <Text style={styles.error}>{error}</Text>

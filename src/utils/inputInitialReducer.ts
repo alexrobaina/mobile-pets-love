@@ -16,28 +16,6 @@ export const INPUT_INITIAL_STATE = {
   isFormValid: true,
 };
 
-// This function save in the store values from any input
-export const onInputChange = (
-  name: string,
-  type: string,
-  value: string,
-  dispatch: any,
-  touched: boolean,
-  hasError: boolean,
-) => {
-  dispatch({
-    type: type,
-    data: {
-      name,
-      value,
-      touched,
-      hasError,
-      error: '',
-      type: type,
-    },
-  });
-};
-
 // Check values and make validation inputs
 export const formsReducer = (state, action) => {
   const { name, value, hasError, error, touched, type } = action.data;

@@ -1,20 +1,22 @@
-import React, { useCallback, useReducer } from 'react';
+import React from 'react';
 import { StyleSheet, Image } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import AppButton from 'components/commons/AppButton';
+import { useSelector } from 'react-redux';
 import AppTitle from 'components/commons/AppTitle';
-import {
-  formsReducer,
-  validateInput,
-  onInputChange,
-  INPUT_INITIAL_STATE,
-} from 'utils/inputInitialReducer';
 import { signIn } from '../../store/slices/auth/auth';
 import Layout from 'components/commons/Layout';
 import { useTranslation } from 'react-i18next';
-import WrapperInputs from 'components/commons/WrapperInputs';
-import Input from 'components/commons/Input';
-import { EMAIL, PASSWORD } from 'utils/validations/validationType';
+import Form from 'components/commons/Form';
+import FormInputs from './InputsForm';
+
+export const INPUT_INITIAL_STATE = {
+  type: '',
+  error: '',
+  value: '',
+  touched: false,
+  hasError: false,
+  isFormValid: true,
+  hasValidation: false,
+};
 
 const initialState = {
   email: INPUT_INITIAL_STATE,
@@ -22,28 +24,10 @@ const initialState = {
 };
 
 const Login = () => {
-  const [formState, dispatchReducer] = useReducer(formsReducer, initialState);
-  const dispatch = useDispatch();
   const { t } = useTranslation();
-
-  const handleChangeEmail = useCallback((text) => {
-    onInputChange('email', EMAIL, text, dispatchReducer, true, false);
-  }, []);
-
-  const handleChangePassword = useCallback((text) => {
-    onInputChange('password', PASSWORD, text, dispatchReducer, true, false);
-  }, []);
 
   const { loading } = useSelector((state: any) => state.auth);
 
-  const handleLogin = () => {
-    const isValid = validateInput(formState);
-    console.log(isValid);
-
-    dispatch(signIn({ email, password }));
-  };
-
-  const { email, password } = formState;
   if (loading) {
     return <AppTitle text={t('loading')} />;
   }
@@ -55,28 +39,11 @@ const Login = () => {
         source={require('../../assets/images/noteBookShelter.png')}
         style={styles.image}
       />
-      <WrapperInputs
-        as={Input}
-        name="email"
-        label="Email"
-        value={email.value}
-        error={email.error}
-        hasError={email.hasError}
-        handleChange={handleChangeEmail}
-        placeholder="shelterpets@email.com"
+      <Form
+        handleSubmit={signIn}
+        initialState={initialState}
+        formComponentsInputs={FormInputs}
       />
-      <WrapperInputs
-        as={Input}
-        isSecureText
-        name="password"
-        label="Password"
-        placeholder="Password"
-        value={password.value}
-        error={password.error}
-        hasError={password.hasError}
-        handleChange={handleChangePassword}
-      />
-      <AppButton title={t('login')} handlePress={handleLogin} />
     </Layout>
   );
 };

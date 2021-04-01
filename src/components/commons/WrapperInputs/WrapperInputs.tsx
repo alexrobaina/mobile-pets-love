@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { number } from 'yup';
 interface Props {
   as: any;
   name: string;
@@ -13,8 +12,9 @@ interface Props {
   placeholder: string;
   value: string | number;
   isSecureText?: boolean;
+  validationType?: string;
   handleViewSecureText?: () => void;
-  handleChange?: (value: string | number) => void;
+  handleChange?: (value: string | number, name: string, validationType: string) => void;
 }
 
 const WrapperInputs: FC<Props> = ({
@@ -29,6 +29,7 @@ const WrapperInputs: FC<Props> = ({
   required = false,
   placeholder = '',
   hideError = false,
+  validationType = '',
   handleChange = null,
   ...props
 }) => {
@@ -46,6 +47,7 @@ const WrapperInputs: FC<Props> = ({
         placeholder={placeholder}
         handleChange={handleChange}
         isSecureText={isSecureText}
+        validationType={validationType}
       />
     </View>
   );
