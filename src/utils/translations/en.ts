@@ -1,12 +1,17 @@
 export default {
   login: 'Login',
   // ==============================
-  // PETS CREATION
+  // pet creation
   // ==============================
   petCreation: 'Create pet',
   // ==============================
-  // VALIDATIONS
+  // valitadtions
   // ==============================
   field_required: 'This field is required',
   field_email: 'The email is incorrect',
+  // ==============================
+  // forms
+  // ==============================
+  email: 'Email',
+  password: 'Password',
 };

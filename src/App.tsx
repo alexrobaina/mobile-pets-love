@@ -1,6 +1,7 @@
 import React from 'react';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
+import { Provider } from 'react-redux';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { registerRootComponent } from 'expo';
@@ -8,6 +9,7 @@ import PetCreation from 'screens/PetCreation';
 import Login from 'screens/Login';
 import Register from 'screens/Register';
 import 'utils/i18n';
+import store from './store';
 import colors from 'styles/colors';
 
 const Stack = createStackNavigator();
@@ -40,9 +42,11 @@ const App = () => {
   }
 
   return (
-    <NavigationContainer theme={PetsLoveTheme}>
-      <StackNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer theme={PetsLoveTheme}>
+        <StackNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 };
 

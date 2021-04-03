@@ -1,31 +1,36 @@
 import React, { FC } from 'react';
-import { observer } from 'mobx-react-lite';
 import { StyleSheet, View } from 'react-native';
-import InputStore from 'stores/InputStore';
+
 interface Props {
   as: any;
-  value?: string;
+  name: string;
+  error: string;
   label?: string;
+  hasError: boolean;
   required?: boolean;
   hideError?: boolean;
   inputRef?: Function;
   placeholder: string;
+  value: string | number;
   isSecureText?: boolean;
-  inputStore: InputStore;
-  handleChange?: (value: string | number) => void;
+  validationType?: string;
   handleViewSecureText?: () => void;
+  handleChange?: (value: string | number, name: string, validationType: string) => void;
 }
 
 const WrapperInputs: FC<Props> = ({
+  name,
+  error,
+  value,
+  hasError,
   label = '',
-  inputStore,
   isSecureText,
-  value = null,
   as: Component,
   inputRef = null,
   required = false,
   placeholder = '',
   hideError = false,
+  validationType = '',
   handleChange = null,
   ...props
 }) => {
@@ -33,19 +38,17 @@ const WrapperInputs: FC<Props> = ({
     <View style={styles.wrapper}>
       <Component
         {...props}
+        name={name}
         label={label}
         value={value}
+        error={error}
+        hasError={hasError}
         inputRef={inputRef}
         required={required}
         placeholder={placeholder}
         handleChange={handleChange}
         isSecureText={isSecureText}
-        value={inputStore && inputStore.value}
-        errorMessage={
-          inputStore && !hideError && inputStore.errorMessage
-            ? inputStore.errorMessage
-            : ''
-        }
+        validationType={validationType}
       />
     </View>
   );
@@ -60,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default observer(WrapperInputs);
+export default WrapperInputs;

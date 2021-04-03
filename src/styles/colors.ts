@@ -7,6 +7,7 @@ const colors = {
     border: '#5E92F3',
     light: '#D0D0D0',
   },
+  borderInput: '#E9BFD3',
   medium: '#EDEDED',
   black: '#181818',
   white: '#FFF',
