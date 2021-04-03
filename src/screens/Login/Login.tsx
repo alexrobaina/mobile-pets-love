@@ -8,7 +8,9 @@ import { useTranslation } from 'react-i18next';
 import Form from 'components/commons/Form';
 import LoginFormInputs from './LoginFormInputs';
 
+// este initial state se va a un archivo de constantes en la carpeta utils
 export const INPUT_INITIAL_STATE = {
+  name: '',
   type: '',
   error: '',
   value: '',
@@ -18,8 +20,8 @@ export const INPUT_INITIAL_STATE = {
 };
 
 const initialState = {
-  email: INPUT_INITIAL_STATE,
-  password: INPUT_INITIAL_STATE,
+  email: { ...INPUT_INITIAL_STATE, isRequired: true },
+  password: { ...INPUT_INITIAL_STATE, isRequired: true },
 };
 
 const Login = () => {
@@ -47,6 +49,7 @@ const Login = () => {
   );
 };
 
+// los stylos va a ir en un archivo .ts dentro de la misma carpeta
 const styles = StyleSheet.create({
   input: {
     height: 40,
@@ -70,12 +73,12 @@ const styles = StyleSheet.create({
 export default Login;
 
 // This functions is for change language.
-
 {
   /* <Button onPress={() => onChangeLang('en')} title="en" />
 <Button onPress={() => onChangeLang('es')} title="es" />  */
 }
 
+// ESTA FUNCION TAMBIEN PODRIA SER UN HELPER EN LA PARTE UTILS
 // const onChangeLang = useCallback((lang) => {
 //   i18n.changeLanguage(lang === 'en' ? 'en' : 'es').then(() => {
 //     if (I18nManager.isRTL) {

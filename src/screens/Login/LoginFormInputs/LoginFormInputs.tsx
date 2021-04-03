@@ -33,8 +33,8 @@ const LoginFormInputs = ({ formState, handleChange }) => {
         value={password.value}
         error={password.error}
         validationType={PASSWORD}
-        hasError={password.hasError}
         handleChange={handleChange}
+        hasError={password.hasError}
       />
     </>
   );
