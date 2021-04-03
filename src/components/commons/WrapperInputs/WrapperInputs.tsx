@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
+
 interface Props {
   as: any;
   name: string;
@@ -10,17 +11,11 @@ interface Props {
   hideError?: boolean;
   inputRef?: Function;
   placeholder: string;
-  isRequired?: boolean;
   value: string | number;
   isSecureText?: boolean;
   validationType?: string;
   handleViewSecureText?: () => void;
-  handleChange?: (
-    value: string | number,
-    name: string,
-    validationType: string,
-    isRequired?: boolean,
-  ) => void;
+  handleChange?: (value: string | number, name: string, validationType: string) => void;
 }
 
 const WrapperInputs: FC<Props> = ({
@@ -35,7 +30,6 @@ const WrapperInputs: FC<Props> = ({
   required = false,
   placeholder = '',
   hideError = false,
-  isRequired = false,
   validationType = '',
   handleChange = null,
   ...props
@@ -51,7 +45,6 @@ const WrapperInputs: FC<Props> = ({
         hasError={hasError}
         inputRef={inputRef}
         required={required}
-        isRequired={isRequired}
         placeholder={placeholder}
         handleChange={handleChange}
         isSecureText={isSecureText}

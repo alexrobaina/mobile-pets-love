@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
 import AppTitle from 'components/commons/AppTitle';
 import Layout from 'components/commons/Layout';
 import { useTranslation } from 'react-i18next';
@@ -32,22 +31,5 @@ const PetCreation = () => {
     </Layout>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  image: {
-    marginTop: 20,
-    width: 'auto',
-    height: 300,
-  },
-  button: {
-    backgroundColor: 'red',
-    borderRadius: 10,
-  },
-});
 
 export default PetCreation;

@@ -13,7 +13,6 @@ const LoginFormInputs = ({ formState, handleChange }) => {
     <>
       <WrapperInputs
         as={Input}
-        isRequired
         name="email"
         label={t('email')}
         value={email.value}
@@ -25,7 +24,6 @@ const LoginFormInputs = ({ formState, handleChange }) => {
       />
       <WrapperInputs
         as={Input}
-        isRequired
         isSecureText
         name="password"
         label={t('password')}

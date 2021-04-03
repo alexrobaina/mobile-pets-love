@@ -1,7 +1,5 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Platform } from 'react-native';
-import { observer, useLocalObservable } from 'mobx-react-lite';
-import InternalInputStore from './InternalInputStore';
 import colors from 'styles/colors';
 import PasswordEyeButton from './PasswordEyeButton/PasswordEyeButton';
 
@@ -13,15 +11,9 @@ interface Props {
   hasError: boolean;
   placeholder: string;
   errorMessage: string;
-  isRequired?: boolean;
   isSecureText?: boolean;
   validationType?: string;
-  handleChange: (
-    e: string | number,
-    name: string,
-    validationType?: string,
-    isRequired?: boolean,
-  ) => void;
+  handleChange: (e: string | number, name: string, validationType?: string) => void;
 }
 
 const Input: FC<Props> = ({
@@ -32,23 +24,22 @@ const Input: FC<Props> = ({
   label = '',
   placeholder,
   handleChange,
-  isRequired = false,
   validationType = '',
   isSecureText = false,
 }) => {
-  const internalInputStore = useLocalObservable(() => new InternalInputStore());
+  const [secureTextEntry, setSecureTextEntry] = useState(false);
 
-  const handleViewSecureText = useCallback(() => {
-    internalInputStore.setSecureTextEntry();
-  }, []);
+  const handleViewSecureText = () => {
+    setSecureTextEntry(!secureTextEntry);
+  };
 
   const handleChangeText = useCallback((text) => {
-    handleChange(text, name, validationType, isRequired);
+    handleChange(text, name, validationType);
   }, []);
 
   useEffect(() => {
     if (isSecureText) {
-      internalInputStore.setSecureTextEntry();
+      setSecureTextEntry(true);
     }
   }, []);
 
@@ -97,7 +88,7 @@ const Input: FC<Props> = ({
       <PasswordEyeButton
         isSecureText={isSecureText}
         handleViewSecureText={handleViewSecureText}
-        secureTextEntry={internalInputStore.secureTextEntry}
+        secureTextEntry={secureTextEntry}
       />
       <View style={styles.containar}>
         <Text style={styles.label}>{label}</Text>
@@ -107,7 +98,7 @@ const Input: FC<Props> = ({
           autoCapitalize="none"
           placeholder={placeholder}
           onChangeText={handleChangeText}
-          secureTextEntry={internalInputStore.secureTextEntry}
+          secureTextEntry={secureTextEntry}
         />
         <Text style={styles.error}>{error}</Text>
       </View>
@@ -115,4 +106,4 @@ const Input: FC<Props> = ({
   );
 };
 
-export default observer(Input);
+export default Input;

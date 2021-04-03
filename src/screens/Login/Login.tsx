@@ -1,23 +1,14 @@
 import React from 'react';
-import { StyleSheet, Image } from 'react-native';
+import { Image } from 'react-native';
 import { useSelector } from 'react-redux';
-import AppTitle from 'components/commons/AppTitle';
-import { signIn } from '../../store/slices/auth/auth';
-import Layout from 'components/commons/Layout';
 import { useTranslation } from 'react-i18next';
+import AppTitle from 'components/commons/AppTitle';
+import Layout from 'components/commons/Layout';
 import Form from 'components/commons/Form';
+import { INPUT_INITIAL_STATE } from '../../contants/baseInitialState';
+import { signIn } from '../../store/slices/auth/auth';
 import LoginFormInputs from './LoginFormInputs';
-
-// este initial state se va a un archivo de constantes en la carpeta utils
-export const INPUT_INITIAL_STATE = {
-  name: '',
-  type: '',
-  error: '',
-  value: '',
-  touched: false,
-  hasError: false,
-  isRequired: false,
-};
+import styles from './login.styles';
 
 const initialState = {
   email: { ...INPUT_INITIAL_STATE, isRequired: true },
@@ -48,27 +39,6 @@ const Login = () => {
     </Layout>
   );
 };
-
-// los stylos va a ir en un archivo .ts dentro de la misma carpeta
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  image: {
-    marginTop: 20,
-    width: 'auto',
-    height: 300,
-  },
-  button: {
-    backgroundColor: 'red',
-    borderRadius: 10,
-  },
-});
 
 export default Login;
 
