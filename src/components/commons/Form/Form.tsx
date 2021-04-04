@@ -1,7 +1,6 @@
 import React, { FC, useReducer, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet } from 'react-native';
 import AppButton from 'components/commons/AppButton';
 import { formsReducer } from './formReducer';
 
@@ -22,7 +21,6 @@ const Form: FC<Props> = ({
   const [formState, dispatchReducer] = useReducer(formsReducer, initialState);
   const dispatch = useDispatch();
 
-  // se podria crear un archivo dentro de la misma carpeta del componente
   const onInputChange = (
     name: string,
     type: string,
@@ -30,6 +28,7 @@ const Form: FC<Props> = ({
     dispatch: any,
     touched: boolean,
     hasError: boolean,
+    isRequired: boolean,
   ) => {
     dispatch({
       type: type,
@@ -40,6 +39,7 @@ const Form: FC<Props> = ({
         hasError,
         error: '',
         type: type,
+        isRequired,
       },
     });
   };
@@ -62,15 +62,16 @@ const Form: FC<Props> = ({
     });
   };
 
-  const handleChange = useCallback((text, name, validationType) => {
-    onInputChange(name, validationType, text, dispatchReducer, true, false);
+  const handleChange = useCallback((text, name, validationType, isRequired) => {
+    onInputChange(name, validationType, text, dispatchReducer, true, false, isRequired);
   }, []);
 
   const submit = () => {
     let isValidate = true;
-    Object.entries(formState).forEach(([key, value]) => {
+    Object.entries(formState).forEach(([key, value]: any) => {
+      if (value.hasError) isValidate = false;
       if (value.isRequired) {
-        if (!value.value) {
+        if (value.value === '' || value.value === undefined) {
           isValidate = false;
           validateIsRequire(key, key, true, dispatchReducer, value.isRequired);
         }
@@ -86,12 +87,5 @@ const Form: FC<Props> = ({
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  containerLayout: {
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-});
 
 export default Form;

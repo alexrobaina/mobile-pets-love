@@ -9,6 +9,8 @@ import { signIn, authStart, authSuccess, authFailure } from '../../slices/auth/a
 import { login } from '../../api/auth/auth';
 
 export function* signInWorker({ payload }) {
+  console.log('payload', payload);
+
   try {
     // Todas las acciones de redux que alteral el estado van put el resto call
     yield put(authStart());

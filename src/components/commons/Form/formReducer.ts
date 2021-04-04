@@ -3,6 +3,7 @@ import { EMAIL, PASSWORD } from '../../../utils/validations/validationType';
 
 export const formsReducer = (state, action) => {
   let { name, value, hasError, error, touched, type, isRequired } = action.data;
+
   switch (action.type) {
     case EMAIL:
       const validationEmail = validationSchemas.emailValidation(value, isRequired);
@@ -25,7 +26,6 @@ export const formsReducer = (state, action) => {
       let validationPassword = validationSchemas.passwordValidation(value, isRequired);
       hasError = validationPassword?.hasError;
       error = validationPassword?.errorMessage;
-
       return {
         ...state,
         [name]: {

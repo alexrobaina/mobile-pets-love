@@ -8,6 +8,7 @@ interface Props {
   label?: string;
   hasError: boolean;
   required?: boolean;
+  isRequired: boolean;
   hideError?: boolean;
   inputRef?: Function;
   placeholder: string;
@@ -15,7 +16,12 @@ interface Props {
   isSecureText?: boolean;
   validationType?: string;
   handleViewSecureText?: () => void;
-  handleChange?: (value: string | number, name: string, validationType: string) => void;
+  handleChange?: (
+    value: string | number,
+    name: string,
+    validationType: string,
+    isRequired: boolean,
+  ) => void;
 }
 
 const WrapperInputs: FC<Props> = ({
@@ -23,6 +29,7 @@ const WrapperInputs: FC<Props> = ({
   error,
   value,
   hasError,
+  isRequired,
   label = '',
   isSecureText,
   as: Component,
@@ -44,7 +51,7 @@ const WrapperInputs: FC<Props> = ({
         error={error}
         hasError={hasError}
         inputRef={inputRef}
-        required={required}
+        isRequired={isRequired}
         placeholder={placeholder}
         handleChange={handleChange}
         isSecureText={isSecureText}

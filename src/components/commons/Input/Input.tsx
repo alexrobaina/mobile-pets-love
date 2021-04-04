@@ -10,10 +10,16 @@ interface Props {
   label?: string;
   hasError: boolean;
   placeholder: string;
+  isRequired?: boolean;
   errorMessage: string;
   isSecureText?: boolean;
   validationType?: string;
-  handleChange: (e: string | number, name: string, validationType?: string) => void;
+  handleChange: (
+    e: string | number,
+    name: string,
+    validationType?: string,
+    isRequired?: boolean,
+  ) => void;
 }
 
 const Input: FC<Props> = ({
@@ -24,6 +30,7 @@ const Input: FC<Props> = ({
   label = '',
   placeholder,
   handleChange,
+  isRequired = false,
   validationType = '',
   isSecureText = false,
 }) => {
@@ -34,7 +41,7 @@ const Input: FC<Props> = ({
   };
 
   const handleChangeText = useCallback((text) => {
-    handleChange(text, name, validationType);
+    handleChange(text, name, validationType, isRequired);
   }, []);
 
   useEffect(() => {
