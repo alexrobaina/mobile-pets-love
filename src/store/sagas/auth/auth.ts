@@ -9,17 +9,20 @@ import { signIn, authStart, authSuccess, authFailure } from '../../slices/auth/a
 import { login } from '../../api/auth/auth';
 
 export function* signInWorker({ payload }) {
-  console.log('payload', payload);
+  const data = {
+    email: payload.email.value,
+    password: payload.password.value,
+  };
 
   try {
-    // Todas las acciones de redux que alteral el estado van put el resto call
     yield put(authStart());
-    // const result = yield call(login, payload);
-    yield put(authSuccess({ result: '' }));
-  } catch (error) {
-    console.log(error);
+    const result = yield call(login, data);
 
-    yield put(authFailure(error));
+    yield put(authSuccess({ result }));
+  } catch (error) {
+    console.log(2, error.response.data.message);
+
+    yield put(authFailure(error.response.data.message));
   }
 }
 
