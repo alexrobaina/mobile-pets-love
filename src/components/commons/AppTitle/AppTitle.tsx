@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
       },
       android: {
         marginTop: 70,
-        AfontSize: 38,
+        fontSize: 38,
       },
     }),
   },

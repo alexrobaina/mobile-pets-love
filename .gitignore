@@ -11,6 +11,7 @@ web-build/
 
 .idea
 documents
+.vscode/*
 
 # macOS
 .DS_Store

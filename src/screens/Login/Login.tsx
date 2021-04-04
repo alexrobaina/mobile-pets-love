@@ -11,6 +11,8 @@ import LoginFormInputs from './LoginFormInputs';
 import styles from './login.styles';
 
 const initialState = {
+  // If you want the field to be required is necesary set isRequired in true and
+  // set isRequired in form LoginFormInputs
   email: { ...INPUT_INITIAL_STATE, isRequired: true },
   password: { ...INPUT_INITIAL_STATE, isRequired: true },
 };
