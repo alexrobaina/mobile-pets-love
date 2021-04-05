@@ -1,20 +1,20 @@
 Arguments: 
-  /Users/U631551/.nvm/versions/node/v12.18.4/bin/node /usr/local/bin/yarn add @types/formik
+  /Users/U631551/.nvm/versions/node/v14.16.0/bin/node /usr/local/bin/yarn add @types/react-native-pager-view
 
 PATH: 
-  /Users/U631551/.nvm/versions/node/v12.18.4/bin:/Users/U631551/.nvm/versions/node/v12.18.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/U631551/.nvm/versions/node/v12.18.4/bin:/Users/U631551/Library/Android/sdk/emulator:/Users/U631551/Library/Android/sdk/tools:/Users/U631551/Library/Android/sdk/tools/bin:/Users/U631551/Library/Android/sdk/platform-tools:/Users/U631551/Library/Android/sdk/emulator:/Users/U631551/Library/Android/sdk/tools:/Users/U631551/Library/Android/sdk/tools/bin:/Users/U631551/Library/Android/sdk/platform-tools
+  /Users/U631551/.nvm/versions/node/v14.16.0/bin:/Users/U631551/.nvm/versions/node/v12.18.4/bin:/Users/U631551/.nvm/versions/node/v12.18.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/U631551/.nvm/versions/node/v12.18.4/bin:/Users/U631551/Library/Android/sdk/emulator:/Users/U631551/Library/Android/sdk/tools:/Users/U631551/Library/Android/sdk/tools/bin:/Users/U631551/Library/Android/sdk/platform-tools:/Users/U631551/Library/Android/sdk/emulator:/Users/U631551/Library/Android/sdk/tools:/Users/U631551/Library/Android/sdk/tools/bin:/Users/U631551/Library/Android/sdk/platform-tools
 
 Yarn version: 
   1.22.10
 
 Node version: 
-  12.18.4
+  14.16.0
 
 Platform: 
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fformik: Not found
+  Error: https://registry.yarnpkg.com/@types%2freact-native-pager-view: Not found
       at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66988:18)
       at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140662:22)
       at Request.emit (events.js:315:20)
@@ -23,8 +23,8 @@ Trace:
       at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141556:12)
       at Object.onceWrapper (events.js:421:28)
       at IncomingMessage.emit (events.js:327:22)
-      at endReadableNT (_stream_readable.js:1220:12)
-      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+      at endReadableNT (internal/streams/readable.js:1327:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
 
 npm manifest: 
   {
@@ -63,11 +63,8 @@ npm manifest:
       "expo-permissions": "~10.0.0",
       "expo-status-bar": "~1.0.3",
       "expo-vector-icons": "^10.0.1",
-      "formik": "^2.2.6",
       "i18next": "^19.8.4",
       "lodash.memoize": "^4.1.2",
-      "mobx": "^6.1.6",
-      "mobx-react-lite": "^3.2.0",
       "prettier": "^2.2.1",
       "react": "16.13.1",
       "react-dom": "16.13.1",
@@ -76,14 +73,14 @@ npm manifest:
       "react-native-gesture-handler": "~1.8.0",
       "react-native-i18n": "^2.0.15",
       "react-native-localize": "^2.0.1",
+      "react-native-pager-view": "^5.1.2",
       "react-native-reanimated": "~1.13.0",
       "react-native-restart": "^0.0.20",
       "react-native-safe-area-context": "3.1.9",
       "react-native-screens": "~2.15.0",
       "react-native-web": "~0.13.12",
       "react-redux": "^7.2.2",
-      "redux-saga": "^1.1.3",
-      "yup": "^0.32.8"
+      "redux-saga": "^1.1.3"
     },
     "devDependencies": {
       "@babel/core": "~7.9.0",
@@ -1083,13 +1080,6 @@ Lockfile:
     dependencies:
       regenerator-runtime "^0.13.4"
   
-  "@babel/runtime@^7.10.5":
-    version "7.12.13"
-    resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.13.tgz#0a21452352b02542db0ffb928ac2d3ca7cb6d66d"
-    integrity sha512-8+3UMPBrjFa/6TtKi/7sehPKqfAm4g6K+YQjyyFOLUTxzOngcRZTlAVY8sc2CORJYqdHQY8gRPHmn+qo15rCBw==
-    dependencies:
-      regenerator-runtime "^0.13.4"
-  
   "@babel/runtime@^7.12.1", "@babel/runtime@^7.6.3":
     version "7.13.10"
     resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.13.10.tgz#47d42a57b6095f4468da440388fdbad8bebf0d7d"
@@ -2018,11 +2008,6 @@ Lockfile:
     version "7.0.7"
     resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
     integrity sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==
-  
-  "@types/lodash@^4.14.165":
-    version "4.14.168"
-    resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.168.tgz#fe24632e79b7ade3f132891afff86caa5e5ce008"
-    integrity sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==
   
   "@types/node@*":
     version "14.14.22"
@@ -3204,11 +3189,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
     integrity sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=
   
-  deepmerge@^2.1.1:
-    version "2.2.1"
-    resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-2.2.1.tgz#5d3ff22a01c00f645405a2fbc17d0778a1801170"
-    integrity sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==
-  
   deepmerge@^3.2.0:
     version "3.3.0"
     resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-3.3.0.tgz#d3c47fd6f3a93d517b14426b0628a17b0125f5f7"
@@ -4117,19 +4097,6 @@ Lockfile:
     version "2.0.5"
     resolved "https://registry.yarnpkg.com/foreach/-/foreach-2.0.5.tgz#0bee005018aeb260d0a3af3ae658dd0136ec1b99"
     integrity sha1-C+4AUBiusmDQo6865ljdATbsG5k=
-  
-  formik@^2.2.6:
-    version "2.2.6"
-    resolved "https://registry.yarnpkg.com/formik/-/formik-2.2.6.tgz#378a4bafe4b95caf6acf6db01f81f3fe5147559d"
-    integrity sha512-Kxk2zQRafy56zhLmrzcbryUpMBvT0tal5IvcifK5+4YNGelKsnrODFJ0sZQRMQboblWNym4lAW3bt+tf2vApSA==
-    dependencies:
-      deepmerge "^2.1.1"
-      hoist-non-react-statics "^3.3.0"
-      lodash "^4.17.14"
-      lodash-es "^4.17.14"
-      react-fast-compare "^2.0.1"
-      tiny-warning "^1.0.2"
-      tslib "^1.10.0"
   
   fragment-cache@^0.2.1:
     version "0.2.1"
@@ -5123,11 +5090,6 @@ Lockfile:
     dependencies:
       p-locate "^5.0.0"
   
-  lodash-es@^4.17.11, lodash-es@^4.17.14:
-    version "4.17.20"
-    resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.20.tgz#29f6332eefc60e849f869c264bc71126ad61e8f7"
-    integrity sha512-JD1COMZsq8maT6mnuz1UMV0jvYD0E0aUsSOdrr1/nAG3dhqQXwRRgeW0cSqH1U43INKcqxaiVIQNOUDld7gRDA==
-  
   lodash._reinterpolate@^3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
@@ -5699,16 +5661,6 @@ Lockfile:
     dependencies:
       minimist "^1.2.5"
   
-  mobx-react-lite@^3.2.0:
-    version "3.2.0"
-    resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-3.2.0.tgz#331d7365a6b053378dfe9c087315b4e41c5df69f"
-    integrity sha512-q5+UHIqYCOpBoFm/PElDuOhbcatvTllgRp3M1s+Hp5j0Z6XNgDbgqxawJ0ZAUEyKM8X1zs70PCuhAIzX1f4Q/g==
-  
-  mobx@^6.1.6:
-    version "6.1.8"
-    resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.1.8.tgz#5d03cb76d8f7694dd82bfb2578d886945b66450d"
-    integrity sha512-U4yCvUeh6yKXRwFxm2lyJjXPVekOEar/R8ZKWAXem/3fthJqYflViawfjDAUh7lZEvbKqljC3NT/pSaUKpE+gg==
-  
   ms@2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -5733,11 +5685,6 @@ Lockfile:
     version "2.14.2"
     resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.2.tgz#f5376400695168f4cc694ac9393d0c9585eeea19"
     integrity sha512-M2ufzIiINKCuDfBSAUr1vWQ+vuVcA9kqx8JJUsbQi6yf1uGRyb7HfpdfUr5qLXf3B/t8dPvcjhKMmlfnP47EzQ==
-  
-  nanoclone@^0.2.1:
-    version "0.2.1"
-    resolved "https://registry.yarnpkg.com/nanoclone/-/nanoclone-0.2.1.tgz#dd4090f8f1a110d26bb32c49ed2f5b9235209ed4"
-    integrity sha512-wynEP02LmIbLpcYw8uBKpcfF6dmg2vcpKqxeH5UcoKEYdExslsdUA4ugFauuaeYdTB76ez6gJW8XAZ6CgkXYxA==
   
   nanoid@^3.1.15:
     version "3.1.20"
@@ -6348,11 +6295,6 @@ Lockfile:
       object-assign "^4.1.1"
       react-is "^16.8.1"
   
-  property-expr@^2.0.4:
-    version "2.0.4"
-    resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-2.0.4.tgz#37b925478e58965031bb612ec5b3260f8241e910"
-    integrity sha512-sFPkHQjVKheDNnPvotjQmm3KD3uk1fWKUN7CrpdbwmUx3CrG3QiM8QpTSimvig5vTXmTvjz7+TDvXOI9+4rkcg==
-  
   pseudomap@^1.0.2:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
@@ -6413,11 +6355,6 @@ Lockfile:
       prop-types "^15.6.2"
       scheduler "^0.19.1"
   
-  react-fast-compare@^2.0.1:
-    version "2.0.4"
-    resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
-    integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
-  
   react-i18next@*, react-i18next@^11.8.5:
     version "11.8.5"
     resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.8.5.tgz#a093335822e36252cda6efc0f55facef6253643f"
@@ -6462,6 +6399,11 @@ Lockfile:
     version "2.0.1"
     resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-2.0.1.tgz#a5bf2f2910260ac2574d5ca5d5f95dc8bbc4ac1f"
     integrity sha512-Tuf26iH7/pHd+yCAORD2EPLhkHdGTMEUXMiiKb4Pz69dE48R7C+MA30EqubE6qTlvAs6gHM+2E5dzLAxcGH5UA==
+  
+  react-native-pager-view@^5.1.2:
+    version "5.1.2"
+    resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.1.2.tgz#a6957afc81f5729cbb884fe963df3482e2f46877"
+    integrity sha512-UvPvjtuIkiI9Ti8NoMH+fiFj0ehfFv4WkNUGM46dOJfOxmE6Z/hoyJjymOHU//iLkQSMO+YNherZs0HcijdA2A==
   
   react-native-reanimated@~1.13.0:
     version "1.13.2"
@@ -7368,11 +7310,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/tiny-queue/-/tiny-queue-0.2.1.tgz#25a67f2c6e253b2ca941977b5ef7442ef97a6046"
     integrity sha1-JaZ/LG4lOyypQZd7XvdELvl6YEY=
   
-  tiny-warning@^1.0.2:
-    version "1.0.3"
-    resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
-    integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
-  
   tinycolor2@^1.4.1:
     version "1.4.2"
     resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.2.tgz#3f6a4d1071ad07676d7fa472e1fac40a719d8803"
@@ -7432,12 +7369,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
     integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
   
-  toposort@^2.0.2:
-    version "2.0.2"
-    resolved "https://registry.yarnpkg.com/toposort/-/toposort-2.0.2.tgz#ae21768175d1559d48bef35420b2f4962f09c330"
-    integrity sha1-riF2gXXRVZ1IvvNUILL0li8JwzA=
-  
-  tslib@^1.10.0, tslib@^1.8.1:
+  tslib@^1.8.1:
     version "1.14.1"
     resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
     integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
@@ -8013,16 +7945,3 @@ Lockfile:
     version "0.1.0"
     resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
     integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
-  
-  yup@^0.32.8:
-    version "0.32.8"
-    resolved "https://registry.yarnpkg.com/yup/-/yup-0.32.8.tgz#16e4a949a86a69505abf99fd0941305ac9adfc39"
-    integrity sha512-SZulv5FIZ9d5H99EN5tRCRPXL0eyoYxWIP1AacCrjC9d4DfP13J1dROdKGfpfRHT3eQB6/ikBl5jG21smAfCkA==
-    dependencies:
-      "@babel/runtime" "^7.10.5"
-      "@types/lodash" "^4.14.165"
-      lodash "^4.17.20"
-      lodash-es "^4.17.11"
-      nanoclone "^0.2.1"
-      property-expr "^2.0.4"
-      toposort "^2.0.2"

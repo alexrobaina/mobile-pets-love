@@ -8,6 +8,7 @@ import { registerRootComponent } from 'expo';
 import PetCreation from 'screens/PetCreation';
 import Login from 'screens/Login';
 import Register from 'screens/Register';
+import WelcomeApp from 'screens/WelcomeApp';
 import 'utils/i18n';
 import store from './store';
 import colors from 'styles/colors';
@@ -15,9 +16,10 @@ import colors from 'styles/colors';
 const Stack = createStackNavigator();
 
 const StackNavigator = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Login">
+  <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="WelcomeApp">
     <Stack.Screen name="Login" component={Login} />
     <Stack.Screen name="Register" component={Register} />
+    <Stack.Screen name="WelcomeApp" component={WelcomeApp} />
     <Stack.Screen name="PetCreation" component={PetCreation} />
   </Stack.Navigator>
 );
