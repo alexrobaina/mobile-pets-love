@@ -1,30 +1,33 @@
-import React, { useState, useRef, useMemo } from 'react';
-import { Image, View, FlatList, Animated } from 'react-native';
-import PagerView from 'react-native-pager-view';
+import React, { useState, useRef } from 'react';
+import { View, FlatList, Animated, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import AppTitle from 'components/commons/AppTitle';
+import OnboardingItem from './OnboardingItem';
+import AppButton from 'components/commons/AppButton';
+import BasePaginator from 'components/commons/BasePaginator';
 import Layout from 'components/commons/Layout';
-import styles from './welcomeApp.styles';
 
 const slides = [
   {
-    id: '1',
+    title: 'Administrador de refugios',
+    id: 0,
     image: require('../../assets/images/noteBookShelter.png'),
   },
   {
-    id: '2',
+    title: 'Historial medico',
+    id: 1,
     image: require('../../assets/images/noteBookShelter.png'),
   },
   {
-    id: '3',
+    title: 'Compartir perfiles',
+    id: 2,
     image: require('../../assets/images/noteBookShelter.png'),
   },
 ];
 
-const Login = () => {
+const WelcomeApp = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const slidesRef = useRef(null);
-  const scrollX = useRef(new Animated.Value(0)).current;
+  const scrollX = new Animated.Value(1);
   const { t } = useTranslation();
 
   const viewableItemsChanged = useRef(({ viewableItems }) => {
@@ -33,44 +36,51 @@ const Login = () => {
 
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
-  // const { loading } = useSelector((state: any) => state.auth);
-
-  // if (loading) {
-  //   return <AppTitle text={t('loading')} />;
-  // }
-
   return (
-    <Layout>
-      <AppTitle text={t('welcomeApp')} />
-      <View style={{ flex: 3 }}>
+    <>
+      <View
+        style={{ justifyContent: 'center', height: 400, marginBottom: 40, marginTop: 80 }}
+      >
         <FlatList
           horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator
-          keyExtractor={(item) => item.id}
-          bounces={false}
           data={slides}
+          pagingEnabled
+          ref={slidesRef}
+          bounces={false}
+          scrollEventThrottle={32}
+          viewabilityConfig={viewConfig}
+          keyExtractor={(item) => item.title}
+          showsHorizontalScrollIndicator={false}
+          onViewableItemsChanged={viewableItemsChanged}
+          renderItem={({ item }) => {
+            return (
+              <OnboardingItem
+                title={item.title}
+                image={item.image}
+                description={item.title}
+              />
+            );
+          }}
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
             useNativeDriver: false,
           })}
-          renderItem={({ item }) => (
-            <Image
-              source={require('../../assets/images/noteBookShelter.png')}
-              style={styles.image}
-            />
-          )}
-          scrollEventThrottle={32}
-          onViewableItemsChanged={viewableItemsChanged}
-          viewabilityConfig={viewConfig}
-          ref={slidesRef}
         />
+        <BasePaginator scrollX={scrollX} data={slides} />
       </View>
-      {/* <Image
-        source={require('../../assets/images/noteBookShelter.png')}
-        style={styles.image}
-      /> */}
-    </Layout>
+      <Layout>
+        <AppButton handlePress={() => console.log('asd')} title="Iniciar sesion" />
+        <AppButton handlePress={() => console.log('asd')} title="Registrarme" />
+      </Layout>
+    </>
   );
 };
 
-export default Login;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default WelcomeApp;

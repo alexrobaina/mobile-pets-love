@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { registerRootComponent } from 'expo';
 import PetCreation from 'screens/PetCreation';
-import Login from 'screens/Login';
+import Login from './screens/Login';
 import Register from 'screens/Register';
 import WelcomeApp from 'screens/WelcomeApp';
 import 'utils/i18n';

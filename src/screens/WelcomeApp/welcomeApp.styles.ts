@@ -1,13 +1,16 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  pagerView: {
+  container: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
     marginTop: 20,
     width: 'auto',
-    height: 300,
+    height: 100,
   },
 });
+
 export default styles;
