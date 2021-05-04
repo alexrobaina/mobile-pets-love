@@ -4,10 +4,11 @@ import colors from 'styles/colors';
 
 interface Props {
   text: string;
+  medium?: boolean;
 }
 
-const AppTitle: FC<Props> = ({ text }) => {
-  return <Text style={styles.title}>{text}</Text>;
+const AppTitle: FC<Props> = ({ text, medium = false }) => {
+  return <Text style={[styles.title, medium && styles.medium]}>{text}</Text>;
 };
 
 const styles = StyleSheet.create({
@@ -23,6 +24,18 @@ const styles = StyleSheet.create({
       android: {
         marginTop: 70,
         fontSize: 38,
+      },
+    }),
+  },
+  medium: {
+    ...Platform.select({
+      ios: {
+        marginTop: 100,
+        fontSize: 25,
+      },
+      android: {
+        marginTop: 70,
+        fontSize: 22,
       },
     }),
   },

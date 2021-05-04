@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Image, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import AppTitle from 'components/commons/AppTitle';
@@ -27,18 +27,20 @@ const Login = () => {
   }
 
   return (
-    <Layout>
-      <AppTitle text={t('login')} />
-      <Image
-        source={require('../../assets/images/noteBookShelter.png')}
-        style={styles.image}
-      />
-      <Form
-        handleSubmit={signIn}
-        initialState={initialState}
-        formComponentsInputs={LoginFormInputs}
-      />
-    </Layout>
+    <ScrollView>
+      <Layout>
+        <AppTitle text={t('login')} />
+        <Image
+          source={require('../../assets/images/noteBookShelter.png')}
+          style={styles.image}
+        />
+        <Form
+          handleSubmit={signIn}
+          initialState={initialState}
+          formComponentsInputs={LoginFormInputs}
+        />
+      </Layout>
+    </ScrollView>
   );
 };
 
