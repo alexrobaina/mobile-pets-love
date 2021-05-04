@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Animated, useWindowDimensions } from 'react-native';
-import styles from './basePaginator.styles';
+import styles from './AppPaginator.styles';
 
-const BasePaginator = ({ data, scrollX }) => {
+const AppPaginator = ({ data, scrollX }) => {
   const { width } = useWindowDimensions();
 
   return (
-    <View style={{ alignItems: 'center' }}>
-      <View style={{ flex: 1, flexDirection: 'row' }}>
+    <View style={styles.containerPaginator}>
+      <View style={styles.alignDots}>
         {data.map((_, i) => {
           const inputRange = [
             Math.round((i - 1) * width),
@@ -41,4 +41,4 @@ const BasePaginator = ({ data, scrollX }) => {
   );
 };
 
-export default BasePaginator;
+export default AppPaginator;
