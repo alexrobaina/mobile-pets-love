@@ -10,7 +10,6 @@ import rootSaga from './sagas';
 let sagaMiddleware = createSagaMiddleware();
 
 const customizedDefaultMiddlware = getDefaultMiddleware({
-  // leer documentación hijo de puta
   serializableCheck: false,
   immutableCheck: false,
 });
